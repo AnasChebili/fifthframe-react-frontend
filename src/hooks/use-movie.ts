@@ -4,7 +4,7 @@ import {
   SearchMoviesSchema,
   TrendingMoviesSchema,
 } from "@/schemas/movie-schema";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 export const useGetTrendingMovies = () => {
   return useInfiniteQuery({
@@ -42,5 +42,12 @@ export const useGetMoviesBySearch = ({ query }: { query: string }) => {
       lastPage.page === lastPage.total_pages ? undefined : lastPage.page + 1,
     select: (data) =>
       SearchMoviesSchema.parse(data.pages.map((page) => page.results)),
+  });
+};
+
+export const useGetMovieDetails = ({ id }: { id: number }) => {
+  return useQuery({
+    queryKey: ["movieDetails", id],
+    queryFn: () => MovieApiService.getMoveDetails({ id }),
   });
 };

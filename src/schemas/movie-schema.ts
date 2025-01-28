@@ -71,3 +71,54 @@ export const SearchMoviesResponseSchema = responseSchemaCreator(
 );
 
 export const SearchMoviesSchema = z.array(SearchMoviesResultsSchema);
+
+const GenreSchema = z.object({
+  id: z.number().default(0),
+  name: z.string(),
+});
+
+const ProductionCompanySchema = z.object({
+  id: z.number().default(0),
+  logo_path: z.string().optional(),
+  name: z.string(),
+  origin_country: z.string(),
+});
+
+const ProductionCountrySchema = z.object({
+  iso_3166_1: z.string(),
+  name: z.string(),
+});
+
+const SpokenLanguageSchema = z.object({
+  english_name: z.string(),
+  iso_639_1: z.string(),
+  name: z.string(),
+});
+
+export const MovieDetailsResponseSchema = z.object({
+  adult: z.boolean().default(true),
+  backdrop_path: z.string().optional(),
+  belongs_to_collection: z.string().optional(),
+  budget: z.number().default(0),
+  genres: z.array(GenreSchema),
+  homepage: z.string().optional(),
+  id: z.number().default(0),
+  imdb_id: z.string().optional(),
+  original_language: z.string(),
+  original_title: z.string(),
+  overview: z.string(),
+  popularity: z.number().default(0),
+  poster_path: z.string().optional(),
+  production_companies: z.array(ProductionCompanySchema),
+  production_countries: z.array(ProductionCountrySchema),
+  release_date: z.string(),
+  revenue: z.number().default(0),
+  runtime: z.number().default(0),
+  spoken_languages: z.array(SpokenLanguageSchema),
+  status: z.string().optional(),
+  tagline: z.string().optional(),
+  title: z.string(),
+  video: z.boolean().default(true),
+  vote_average: z.number().default(0),
+  vote_count: z.number().default(0),
+});
