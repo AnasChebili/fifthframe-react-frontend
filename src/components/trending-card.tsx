@@ -1,11 +1,16 @@
 import { ConfigurationResponseSchema } from "@/schemas/configuration-schema";
-import { MoviesResultSchema } from "@/schemas/movie-schema";
+import {
+  MoviesResultSchema,
+  SearchMoviesResultsSchema,
+} from "@/schemas/movie-schema";
 
 export const TrendingCard = ({
   movie,
   configuration,
 }: {
-  movie: Zod.infer<typeof MoviesResultSchema>;
+  movie:
+    | Zod.infer<typeof MoviesResultSchema>
+    | Zod.infer<typeof SearchMoviesResultsSchema>;
   configuration: Zod.infer<typeof ConfigurationResponseSchema>;
 }) => {
   return (

@@ -45,6 +45,7 @@ export const useGetMoviesBySearch = ({ query }: { query: string }) => {
       lastPage.page === lastPage.total_pages ? undefined : lastPage.page + 1,
     select: (data) =>
       SearchMoviesSchema.array().parse(data.pages.map((page) => page.results)),
+    placeholderData: (prevData) => prevData,
   });
 };
 

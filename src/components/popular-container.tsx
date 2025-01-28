@@ -1,17 +1,17 @@
-import { useGetConfiguration, useGetTrendingMovies } from "@/hooks/use-movie";
+import { useGetConfiguration, useGetPopularPeople } from "@/hooks/use-movie";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
-import { TrendingCard } from "./trending-card";
 import { Spinner } from "./ui/spinner";
 import { useIntersectionObserver } from "@/hooks/infinite-scroll";
+import { PersonCard } from "./person-card";
 
-export const TrendingContainer = () => {
+export const PopularContainer = () => {
   const {
-    data: moviesPages,
+    data: PeoplePages,
     error,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useGetTrendingMovies();
+  } = useGetPopularPeople();
   const configurationQuery = useGetConfiguration();
 
   const loadMoreRef = useIntersectionObserver(() => {
@@ -20,21 +20,23 @@ export const TrendingContainer = () => {
     }
   }, hasNextPage && !isFetchingNextPage);
   return (
-    <ScrollArea className=" border-none  ">
-      <section className="p-4 text-white flex flex-col gap-8 mb-1">
-        <header className="flex flex-col gap-2">
-          <h1 className="text-2xl">Trending Movies</h1>
-          <p className="text-sm text-gray-400">Find Trending Movies</p>
+    <ScrollArea className=" rounded-lg border-gray-500 border h-full w-full">
+      <section className="flex flex-col gap-8 p-5 text-white">
+        <header className=" flex flex-col gap-2">
+          <h1 className="text-2xl">Most Popular Celebrities</h1>
+          <p className="text-sm text-gray-400">
+            Check out these popular actors
+          </p>
         </header>
-        <div className="flex gap-4 ">
+        <div className="flex flex-col gap-8 ">
           {!error &&
-            moviesPages?.map((page) =>
+            PeoplePages?.map((page) =>
               page.map(
-                (movie) =>
+                (person) =>
                   configurationQuery.data && (
-                    <TrendingCard
-                      key={movie.id}
-                      movie={movie}
+                    <PersonCard
+                      key={person.id}
+                      person={person}
                       configuration={configurationQuery.data}
                     />
                   )
@@ -47,7 +49,7 @@ export const TrendingContainer = () => {
           </div>
         </div>
       </section>
-      <ScrollBar orientation="horizontal" />
+      <ScrollBar orientation="vertical" />
     </ScrollArea>
   );
 };

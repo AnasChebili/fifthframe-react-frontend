@@ -16,7 +16,7 @@ export const MoviesResultSchema = z.object({
   original_language: z.string(),
   original_title: z.string(),
   overview: z.string(),
-  poster_path: z.string().optional(),
+  poster_path: z.string().optional().nullable(),
   media_type: z.string(),
   genre_ids: z.array(z.number()),
   popularity: z.number().default(0),
@@ -33,14 +33,14 @@ export const TrendingMoviesSchema = z.array(MoviesResultSchema);
 
 const KnownForSchema = z.object({
   adult: z.boolean().default(true),
-  backdrop_path: z.string().optional(),
+  backdrop_path: z.string().optional().nullable(),
   genre_ids: z.array(z.number()),
   id: z.number().default(0),
   media_type: z.string(),
   original_language: z.string(),
   original_title: z.string().optional(),
   overview: z.string(),
-  poster_path: z.string().optional(),
+  poster_path: z.string().optional().nullable(),
   release_date: z.string().optional(),
   title: z.string().optional(),
   video: z.boolean().default(true),
@@ -48,7 +48,7 @@ const KnownForSchema = z.object({
   vote_count: z.number().default(0),
 });
 
-const PeopleResultSchema = z.object({
+export const PeopleResultSchema = z.object({
   adult: z.boolean().default(true),
   gender: z.number().default(0),
   id: z.number().default(0),
@@ -64,7 +64,9 @@ export const PopularPeopleResponseSchema =
 
 export const PopularPeopleSchema = z.array(PeopleResultSchema);
 
-const SearchMoviesResultsSchema = MoviesResultSchema.omit({ media_type: true });
+export const SearchMoviesResultsSchema = MoviesResultSchema.omit({
+  media_type: true,
+});
 
 export const SearchMoviesResponseSchema = responseSchemaCreator(
   SearchMoviesResultsSchema
@@ -97,7 +99,7 @@ const SpokenLanguageSchema = z.object({
 
 export const MovieDetailsResponseSchema = z.object({
   adult: z.boolean().default(true),
-  backdrop_path: z.string().optional(),
+  backdrop_path: z.string().optional().nullable(),
   belongs_to_collection: z.string().optional(),
   budget: z.number().default(0),
   genres: z.array(GenreSchema),
@@ -108,7 +110,7 @@ export const MovieDetailsResponseSchema = z.object({
   original_title: z.string(),
   overview: z.string(),
   popularity: z.number().default(0),
-  poster_path: z.string().optional(),
+  poster_path: z.string().optional().nullable(),
   production_companies: z.array(ProductionCompanySchema),
   production_countries: z.array(ProductionCountrySchema),
   release_date: z.string(),
