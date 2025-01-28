@@ -4,4 +4,5 @@ export const ENDPOINTS = {
   SEARCH: "search/movie",
   MOVIE: "movie",
   DISCOVER: "discover/movie",
+  CONFIGURATION: "configuration",
 };

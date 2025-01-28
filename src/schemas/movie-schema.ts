@@ -8,9 +8,9 @@ const responseSchemaCreator = (schema: ZodSchema) =>
     total_results: z.number().default(0),
   });
 
-const MoviesResultSchema = z.object({
+export const MoviesResultSchema = z.object({
   adult: z.boolean().default(true),
-  backdrop_path: z.string().optional(),
+  backdrop_path: z.string().optional().nullable(),
   id: z.number().default(0),
   title: z.string(),
   original_language: z.string(),

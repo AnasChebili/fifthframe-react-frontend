@@ -76,3 +76,10 @@ export const useGetMoviesByDiscover = ({ query }: { query: DiscoverQuery }) => {
       SearchMoviesSchema.array().parse(data.pages.map((page) => page.results)),
   });
 };
+
+export const useGetConfiguration = () => {
+  return useQuery({
+    queryKey: ["configuration"],
+    queryFn: MovieApiService.getConfiguration,
+  });
+};

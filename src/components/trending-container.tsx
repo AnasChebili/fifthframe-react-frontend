@@ -1,33 +1,53 @@
-import { useGetTrendingMovies } from "@/hooks/use-movie";
+import { useGetConfiguration, useGetTrendingMovies } from "@/hooks/use-movie";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
+import { TrendingCard } from "./trending-card";
+import { Spinner } from "./ui/spinner";
+import { useIntersectionObserver } from "@/hooks/infinite-scroll";
 
 export const TrendingContainer = () => {
-  const MoviesPagesQuery = useGetTrendingMovies();
+  const {
+    data: moviesPages,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGetTrendingMovies();
+  const configurationQuery = useGetConfiguration();
+  console.log(error);
+
+  const loadMoreRef = useIntersectionObserver(() => {
+    if (hasNextPage && !isFetchingNextPage) {
+      console.log("next");
+      fetchNextPage();
+    }
+  }, hasNextPage && !isFetchingNextPage);
   return (
-    <ScrollArea className=" whitespace-nowrap rounded-md border">
-      <div className="flex w-max gap-4 p-4">
-        {MoviesPagesQuery.data?.map((page) =>
-          page.map((movie) => (
-            <figure key={movie.id} className="shrink-0">
-              <div className="overflow-hidden rounded-md">
-                <img
-                  src={movie.title}
-                  alt={`Photo by ${movie.title}`}
-                  className="aspect-[3/4] h-fit w-fit object-cover"
-                  width={300}
-                  height={400}
-                />
-              </div>
-              <figcaption className="pt-2 text-xs text-muted-foreground">
-                Photo by{" "}
-                <span className="font-semibold text-foreground">
-                  {movie.overview}
-                </span>
-              </figcaption>
-            </figure>
-          ))
-        )}
-      </div>
+    <ScrollArea className=" border-none  ">
+      <section className="p-4 text-white flex flex-col gap-8 mb-1">
+        <header className="flex flex-col gap-2">
+          <h1 className="text-2xl">Trending Movies</h1>
+          <p className="text-sm text-gray-400">Find Trending Movies</p>
+        </header>
+        <div className="flex gap-4 ">
+          {moviesPages?.map((page) =>
+            page.map(
+              (movie) =>
+                configurationQuery.data && (
+                  <TrendingCard
+                    key={movie.id}
+                    movie={movie}
+                    configuration={configurationQuery.data}
+                  />
+                )
+            )
+          )}
+          <div ref={loadMoreRef} className="flex justify-center items-center">
+            {hasNextPage && !isFetchingNextPage && (
+              <Spinner size={"large"} className="text-white" />
+            )}
+          </div>
+        </div>
+      </section>
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
   );

@@ -1,5 +1,6 @@
 import { api } from "@/api/axios";
 import { ENDPOINTS } from "@/api/endpoints";
+import { ConfigurationResponseSchema } from "@/schemas/configuration-schema";
 import {
   MovieDetailsResponseSchema,
   MovieVideosResponseSchema,
@@ -9,21 +10,19 @@ import {
 } from "@/schemas/movie-schema";
 import { DiscoverQuerySchema } from "@/schemas/query-schema";
 
-export type TrendingMoviesResponse = Zod.infer<
-  typeof TrendingMoviesResponseSchema
->;
+type TrendingMoviesResponse = Zod.infer<typeof TrendingMoviesResponseSchema>;
 
-export type PopularPeopleResponse = Zod.infer<
-  typeof PopularPeopleResponseSchema
->;
+type PopularPeopleResponse = Zod.infer<typeof PopularPeopleResponseSchema>;
 
-export type SearchMoviesResponse = Zod.infer<typeof SearchMoviesResponseSchema>;
+type SearchMoviesResponse = Zod.infer<typeof SearchMoviesResponseSchema>;
 
-export type MovieDetailsResponse = Zod.infer<typeof MovieDetailsResponseSchema>;
+type MovieDetailsResponse = Zod.infer<typeof MovieDetailsResponseSchema>;
 
-export type MovieVideosResponse = Zod.infer<typeof MovieVideosResponseSchema>;
+type MovieVideosResponse = Zod.infer<typeof MovieVideosResponseSchema>;
 
 export type DiscoverQuery = Zod.infer<typeof DiscoverQuerySchema>;
+
+type ConfigurationResponse = Zod.infer<typeof ConfigurationResponseSchema>;
 export class MovieApiService {
   static async getTrendingMovies({
     pageParam,
@@ -84,6 +83,11 @@ export class MovieApiService {
     query: DiscoverQuery;
   }): Promise<SearchMoviesResponse> {
     const { data } = await api.get(ENDPOINTS.DISCOVER, { params: query });
+    return data;
+  }
+
+  static async getConfiguration(): Promise<ConfigurationResponse> {
+    const { data } = await api.get(ENDPOINTS.CONFIGURATION);
     return data;
   }
 }
