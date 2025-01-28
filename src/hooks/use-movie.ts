@@ -1,4 +1,7 @@
-import { MovieApiService } from "@/api/api-service/movie/movie-api-service";
+import {
+  DiscoverQuery,
+  MovieApiService,
+} from "@/api/api-service/movie/movie-api-service";
 import {
   PopularPeopleSchema,
   SearchMoviesSchema,
@@ -41,7 +44,7 @@ export const useGetMoviesBySearch = ({ query }: { query: string }) => {
     getNextPageParam: (lastPage) =>
       lastPage.page === lastPage.total_pages ? undefined : lastPage.page + 1,
     select: (data) =>
-      SearchMoviesSchema.parse(data.pages.map((page) => page.results)),
+      SearchMoviesSchema.array().parse(data.pages.map((page) => page.results)),
   });
 };
 
@@ -56,5 +59,20 @@ export const useGetMovieVideos = ({ id }: { id: number }) => {
   return useQuery({
     queryKey: ["movieVideos", id],
     queryFn: () => MovieApiService.getMovieVideos({ id }),
+  });
+};
+
+export const useGetMoviesByDiscover = ({ query }: { query: DiscoverQuery }) => {
+  return useInfiniteQuery({
+    queryKey: ["disvoerMovies", query],
+    queryFn: ({ pageParam }) => {
+      const transformedQuery = { ...query, page: pageParam };
+      return MovieApiService.getMoviesByDiscover({ query: transformedQuery });
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.page === lastPage.total_pages ? undefined : lastPage.page + 1,
+    select: (data) =>
+      SearchMoviesSchema.array().parse(data.pages.map((page) => page.results)),
   });
 };

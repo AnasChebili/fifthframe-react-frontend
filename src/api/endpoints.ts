@@ -3,4 +3,5 @@ export const ENDPOINTS = {
   POPULAR: "person/popular",
   SEARCH: "search/movie",
   MOVIE: "movie",
+  DISCOVER: "discover/movie",
 };

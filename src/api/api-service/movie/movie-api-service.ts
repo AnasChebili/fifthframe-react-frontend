@@ -7,6 +7,7 @@ import {
   SearchMoviesResponseSchema,
   TrendingMoviesResponseSchema,
 } from "@/schemas/movie-schema";
+import { DiscoverQuerySchema } from "@/schemas/query-schema";
 
 export type TrendingMoviesResponse = Zod.infer<
   typeof TrendingMoviesResponseSchema
@@ -21,6 +22,8 @@ export type SearchMoviesResponse = Zod.infer<typeof SearchMoviesResponseSchema>;
 export type MovieDetailsResponse = Zod.infer<typeof MovieDetailsResponseSchema>;
 
 export type MovieVideosResponse = Zod.infer<typeof MovieVideosResponseSchema>;
+
+export type DiscoverQuery = Zod.infer<typeof DiscoverQuerySchema>;
 export class MovieApiService {
   static async getTrendingMovies({
     pageParam,
@@ -72,6 +75,15 @@ export class MovieApiService {
     id: number;
   }): Promise<MovieVideosResponse> {
     const { data } = await api.get(`${ENDPOINTS.MOVIE}/${id}/videos`);
+    return data;
+  }
+
+  static async getMoviesByDiscover({
+    query,
+  }: {
+    query: DiscoverQuery;
+  }): Promise<SearchMoviesResponse> {
+    const { data } = await api.get(ENDPOINTS.DISCOVER, { params: query });
     return data;
   }
 }
