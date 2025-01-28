@@ -1,49 +1,35 @@
-import { z } from "zod";
+import { z, ZodSchema } from "zod";
 
-export const TrendingMoviesResponseSchema = z.object({
-  page: z.number().default(0),
-  results: z.array(
-    z.object({
-      adult: z.boolean().default(true),
-      backdrop_path: z.string().optional(),
-      id: z.number().default(0),
-      title: z.string(),
-      original_language: z.string(),
-      original_title: z.string(),
-      overview: z.string(),
-      poster_path: z.string().optional(),
-      media_type: z.string(),
-      genre_ids: z.array(z.number()),
-      popularity: z.number().default(0),
-      release_date: z.string(),
-      video: z.boolean().default(true),
-      vote_average: z.number().default(0),
-      vote_count: z.number().default(0),
-    })
-  ),
-  total_pages: z.number().default(0),
-  total_results: z.number().default(0),
+const responseSchemaCreator = (schema: ZodSchema) =>
+  z.object({
+    page: z.number().default(0),
+    results: z.array(schema),
+    total_pages: z.number().default(0),
+    total_results: z.number().default(0),
+  });
+
+const MoviesResultSchema = z.object({
+  adult: z.boolean().default(true),
+  backdrop_path: z.string().optional(),
+  id: z.number().default(0),
+  title: z.string(),
+  original_language: z.string(),
+  original_title: z.string(),
+  overview: z.string(),
+  poster_path: z.string().optional(),
+  media_type: z.string(),
+  genre_ids: z.array(z.number()),
+  popularity: z.number().default(0),
+  release_date: z.string(),
+  video: z.boolean().default(true),
+  vote_average: z.number().default(0),
+  vote_count: z.number().default(0),
 });
 
-export const TrendingMoviesSchema = z.array(
-  z.object({
-    adult: z.boolean().default(true),
-    backdrop_path: z.string().optional(),
-    id: z.number().default(0),
-    title: z.string(),
-    original_language: z.string(),
-    original_title: z.string(),
-    overview: z.string(),
-    poster_path: z.string().optional(),
-    media_type: z.string(),
-    genre_ids: z.array(z.number()),
-    popularity: z.number().default(0),
-    release_date: z.string(),
-    video: z.boolean().default(true),
-    vote_average: z.number().default(0),
-    vote_count: z.number().default(0),
-  })
-);
+export const TrendingMoviesResponseSchema =
+  responseSchemaCreator(MoviesResultSchema);
+
+export const TrendingMoviesSchema = z.array(MoviesResultSchema);
 
 const KnownForSchema = z.object({
   adult: z.boolean().default(true),
@@ -62,7 +48,7 @@ const KnownForSchema = z.object({
   vote_count: z.number().default(0),
 });
 
-const ResultSchema = z.object({
+const PeopleResultSchema = z.object({
   adult: z.boolean().default(true),
   gender: z.number().default(0),
   id: z.number().default(0),
@@ -73,11 +59,15 @@ const ResultSchema = z.object({
   profile_path: z.string().optional(),
 });
 
-export const PopularPeopleResponseSchema = z.object({
-  page: z.number().default(0),
-  results: z.array(ResultSchema),
-  total_pages: z.number().default(0),
-  total_results: z.number().default(0),
-});
+export const PopularPeopleResponseSchema =
+  responseSchemaCreator(PeopleResultSchema);
 
-export const PopularPeopleSchema = z.array(ResultSchema);
+export const PopularPeopleSchema = z.array(PeopleResultSchema);
+
+const SearchMoviesResultsSchema = MoviesResultSchema.omit({ media_type: true });
+
+export const SearchMoviesResponseSchema = responseSchemaCreator(
+  SearchMoviesResultsSchema
+);
+
+export const SearchMoviesSchema = z.array(SearchMoviesResultsSchema);
