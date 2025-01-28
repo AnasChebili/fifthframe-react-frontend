@@ -48,6 +48,13 @@ export const useGetMoviesBySearch = ({ query }: { query: string }) => {
 export const useGetMovieDetails = ({ id }: { id: number }) => {
   return useQuery({
     queryKey: ["movieDetails", id],
-    queryFn: () => MovieApiService.getMoveDetails({ id }),
+    queryFn: () => MovieApiService.getMovieDetails({ id }),
+  });
+};
+
+export const useGetMovieVideos = ({ id }: { id: number }) => {
+  return useQuery({
+    queryKey: ["movieVideos", id],
+    queryFn: () => MovieApiService.getMovieVideos({ id }),
   });
 };

@@ -122,3 +122,21 @@ export const MovieDetailsResponseSchema = z.object({
   vote_average: z.number().default(0),
   vote_count: z.number().default(0),
 });
+
+const MovieVideosResultSchema = z.object({
+  iso_639_1: z.string(),
+  iso_3166_1: z.string(),
+  name: z.string(),
+  key: z.string(),
+  site: z.string(),
+  size: z.number().default(0),
+  type: z.string(),
+  official: z.boolean().default(true),
+  published_at: z.string(),
+  id: z.string(),
+});
+
+export const MovieVideosResponseSchema = z.object({
+  id: z.number().default(0),
+  results: z.array(MovieVideosResultSchema),
+});

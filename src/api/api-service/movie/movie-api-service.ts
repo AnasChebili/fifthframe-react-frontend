@@ -2,6 +2,7 @@ import { api } from "@/api/axios";
 import { ENDPOINTS } from "@/api/endpoints";
 import {
   MovieDetailsResponseSchema,
+  MovieVideosResponseSchema,
   PopularPeopleResponseSchema,
   SearchMoviesResponseSchema,
   TrendingMoviesResponseSchema,
@@ -18,6 +19,8 @@ export type PopularPeopleResponse = Zod.infer<
 export type SearchMoviesResponse = Zod.infer<typeof SearchMoviesResponseSchema>;
 
 export type MovieDetailsResponse = Zod.infer<typeof MovieDetailsResponseSchema>;
+
+export type MovieVideosResponse = Zod.infer<typeof MovieVideosResponseSchema>;
 export class MovieApiService {
   static async getTrendingMovies({
     pageParam,
@@ -54,12 +57,21 @@ export class MovieApiService {
     return data;
   }
 
-  static async getMoveDetails({
+  static async getMovieDetails({
     id,
   }: {
     id: number;
   }): Promise<MovieDetailsResponse> {
-    const { data } = await api.get(`${ENDPOINTS.DETAILS}/${id}`);
+    const { data } = await api.get(`${ENDPOINTS.MOVIE}/${id}`);
+    return data;
+  }
+
+  static async getMovieVideos({
+    id,
+  }: {
+    id: number;
+  }): Promise<MovieVideosResponse> {
+    const { data } = await api.get(`${ENDPOINTS.MOVIE}/${id}/videos`);
     return data;
   }
 }
