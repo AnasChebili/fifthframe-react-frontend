@@ -1,1 +1,4 @@
-export const ENDPOINTS = {};
+export const ENDPOINTS = {
+  TRENDING: "trending/movie/day",
+  POPULAR: "person/popular",
+};
