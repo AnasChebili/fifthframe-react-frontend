@@ -34,8 +34,6 @@ export const MovieSheet = ({
     (result) => result.type === "Trailer" && result.site === "YouTube"
   );
 
-  if (!movie) return <Spinner />;
-
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent
