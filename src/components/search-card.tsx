@@ -1,5 +1,7 @@
+import { MovieContext } from "@/context/movie-context";
 import { ConfigurationResponseSchema } from "@/schemas/configuration-schema";
 import { SearchMoviesResultsSchema } from "@/schemas/movie-schema";
+import { useContext } from "react";
 
 export const SearchCard = ({
   movie,
@@ -8,8 +10,15 @@ export const SearchCard = ({
   movie: Zod.infer<typeof SearchMoviesResultsSchema>;
   configuration: Zod.infer<typeof ConfigurationResponseSchema>;
 }) => {
+  const { setOpen, setId } = useContext(MovieContext)!;
   return (
-    <section className="cursor-pointer flex h-[300px] text-white gap-8 items-center">
+    <section
+      className="cursor-pointer flex h-[300px] text-white gap-8 items-center"
+      onClick={() => {
+        setOpen(true);
+        setId(movie.id);
+      }}
+    >
       <div className="overflow-hidden rounded-md flex justify-center items-center">
         <img
           src={`${configuration.images.secure_base_url}/${configuration.images.poster_sizes[2]}/${movie.poster_path}`}

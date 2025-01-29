@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { DiscoverQuery } from "@/api/api-service/movie/movie-api-service";
+import { Input } from "./ui/input";
 
 const sortOptions = [
   { key: "original_title.asc", value: "Original Title (A-Z)" },
@@ -31,7 +32,39 @@ export const PreferenceBar = ({
   setQuery: Dispatch<SetStateAction<DiscoverQuery>>;
 }) => {
   return (
-    <section>
+    <section className="flex  gap-8 w-full">
+      <Input
+        placeholder="Filter by: Keywords"
+        className="border-gray-500"
+        onChange={(event) =>
+          setQuery((prevValue) => ({
+            ...prevValue,
+            with_keywords: event.target.value,
+          }))
+        }
+      />
+      <Input
+        placeholder="Filter by: release year"
+        className="border-gray-500 "
+        type="number"
+        onChange={(event) =>
+          setQuery((prevValue) => ({
+            ...prevValue,
+            year: Number(event.target.value),
+          }))
+        }
+      />
+      <Input
+        placeholder="Filter by: minimum rating"
+        className="border-gray-500 "
+        type="number"
+        onChange={(event) =>
+          setQuery((prevValue) => ({
+            ...prevValue,
+            "vote_average.gte": Number(event.target.value),
+          }))
+        }
+      />
       <Select
         onValueChange={(value) =>
           setQuery((prevValue) => ({
@@ -40,7 +73,7 @@ export const PreferenceBar = ({
           }))
         }
       >
-        <SelectTrigger className="border-gray-500 text-gray-500 px-24">
+        <SelectTrigger className="border-gray-500 text-gray-500 ">
           <SelectValue placeholder="Sort By" />
         </SelectTrigger>
         <SelectContent className="bg-black text-gray-500">
