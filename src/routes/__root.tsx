@@ -3,6 +3,7 @@ import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import fifthframeLogo from "../assets/fifthframe-logo.svg";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -17,7 +18,7 @@ function RootComponent() {
         <div className="absolute top-10 right-10 cursor-pointer">
           <img
             className="text-white w-[220px] h-[30px]  object-cover "
-            src="src/assets/fifthframe-logo.svg"
+            src={fifthframeLogo}
             alt="none"
           />
         </div>
