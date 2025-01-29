@@ -53,6 +53,7 @@ export const useGetMovieDetails = ({ id }: { id: number }) => {
   return useQuery({
     queryKey: ["movieDetails", id],
     queryFn: () => MovieApiService.getMovieDetails({ id }),
+    enabled: id != 0,
   });
 };
 
@@ -75,6 +76,7 @@ export const useGetMoviesByDiscover = ({ query }: { query: DiscoverQuery }) => {
       lastPage.page === lastPage.total_pages ? undefined : lastPage.page + 1,
     select: (data) =>
       SearchMoviesSchema.array().parse(data.pages.map((page) => page.results)),
+    placeholderData: (prevData) => prevData,
   });
 };
 

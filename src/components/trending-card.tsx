@@ -1,8 +1,10 @@
+import { MovieContext } from "@/context/movie-context";
 import { ConfigurationResponseSchema } from "@/schemas/configuration-schema";
 import {
   MoviesResultSchema,
   SearchMoviesResultsSchema,
 } from "@/schemas/movie-schema";
+import { useContext } from "react";
 
 export const TrendingCard = ({
   movie,
@@ -13,10 +15,15 @@ export const TrendingCard = ({
     | Zod.infer<typeof SearchMoviesResultsSchema>;
   configuration: Zod.infer<typeof ConfigurationResponseSchema>;
 }) => {
+  const { setOpen, setId } = useContext(MovieContext)!;
   return (
     <section
       key={movie.id}
       className="cursor-pointer flex flex-col text-white w-[300px] gap-4"
+      onClick={() => {
+        setOpen(true);
+        setId(movie.id);
+      }}
     >
       <div className="overflow-hidden rounded-md flex justify-center items-center">
         <img

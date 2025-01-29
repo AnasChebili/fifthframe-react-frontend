@@ -14,8 +14,16 @@ function RootComponent() {
   return (
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
-        <div>Hello "__root"!</div>
-        <Outlet />
+        <div className="absolute top-10 right-10 cursor-pointer">
+          <img
+            className="text-white w-[220px] h-[30px]  object-cover "
+            src="src/assets/fifthframe-logo.svg"
+            alt="none"
+          />
+        </div>
+        <div className="mt-16">
+          <Outlet />
+        </div>
         <TanStackRouterDevtools />
         <ReactQueryDevtools />
       </QueryClientProvider>
