@@ -1,6 +1,6 @@
 # 🎬 FifthFrame
 
-A sleek and dynamic movie discovery platform designed to bring cinema lovers the best in trending films, popular celebrities, and personalized exploration.
+A sleek and dynamic movie recommendation platform designed to bring cinema lovers the best in trending films, popular celebrities, and personalized exploration.
 
 🚀 **Live Demo:** [FifthFrame](https://main.d2pty21oqdra0f.amplifyapp.com/)
 
