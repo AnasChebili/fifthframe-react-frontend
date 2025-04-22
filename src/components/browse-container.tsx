@@ -34,7 +34,7 @@ export const BrowseContainer = () => {
   }, hasNextPage && !isFetchingNextPage);
 
   return (
-    <Card className="w-full h-full border-gray-500 bg-transparent text-white">
+    <Card className="w-full h-full text-white bg-transparent border-gray-500">
       <CardHeader>
         <CardTitle>Browse</CardTitle>
         <CardDescription>
@@ -43,14 +43,14 @@ export const BrowseContainer = () => {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="flex justify-center flex-col gap-8 items-center">
+      <CardContent className="flex flex-col items-center justify-center gap-8">
         <PreferenceBar setQuery={setQuery} />
         <ScrollArea className="h-[550px]">
           {!isFetching && (!moviePages || moviePages[0].length === 0) ? (
             <h1>Sorry, No Movies exist with those specifications</h1>
           ) : (
             <>
-              <div className="grid xl:grid-cols-4 lg:grid-cols-3 gap-9 justify-around grid-cols-1 md:grid-cols-2">
+              <div className="grid justify-around grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 gap-9 md:grid-cols-2">
                 {moviePages?.map((moviePage) =>
                   moviePage.map(
                     (movie) =>
@@ -60,6 +60,7 @@ export const BrowseContainer = () => {
                           key={movie.id}
                           movie={movie}
                           configuration={configuration}
+                          className="w-auto"
                         />
                       )
                   )
@@ -67,7 +68,7 @@ export const BrowseContainer = () => {
               </div>
               <div
                 ref={loadMoreRef}
-                className="flex justify-center items-center"
+                className="flex items-center justify-center"
               >
                 {hasNextPage && !isFetchingNextPage && (
                   <Spinner size={"large"} className="text-white" />
