@@ -15,7 +15,7 @@ function RootComponent() {
   return (
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
-        <div className="absolute top-10 right-10 cursor-pointer">
+        <div className="fixed cursor-pointer top-10 right-10">
           <img
             className="text-white w-[220px] h-[30px]  object-cover "
             src={fifthframeLogo}

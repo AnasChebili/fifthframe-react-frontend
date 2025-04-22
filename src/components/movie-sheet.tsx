@@ -38,21 +38,21 @@ export const MovieSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent
         side={"right"}
-        className="   border-none bg-black text-white"
+        className="text-white bg-black border-none max-sm:w-full"
       >
         <ScrollArea className="h-svh">
-          <section className="p-10 flex flex-col gap-10 ">
+          <section className="flex flex-col gap-10 p-10 ">
             {movie ? (
               <>
                 <SheetHeader>
-                  <SheetTitle className="text-white text-3xl">
+                  <SheetTitle className="text-3xl text-white">
                     {movie.title}
                   </SheetTitle>
                   <SheetDescription className="text-gray-400">
                     Watch Trailer
                   </SheetDescription>
                 </SheetHeader>
-                <section className="w-full flex flex-col gap-8  ">
+                <section className="flex flex-col w-full gap-8 ">
                   {video?.key ? (
                     <div className="self-center">
                       <MovieYoutube id={video?.key} />
@@ -95,12 +95,12 @@ export const MovieSheet = ({
                     </section>
                     <a
                       href={movie.homepage}
-                      className="flex gap-2 items-center bg-gray-500 px-6 py-1 rounded-full w-fit"
+                      className="flex items-center gap-2 px-6 py-1 bg-gray-500 rounded-full w-fit"
                     >
                       <Play className="w-4 h-4" />
                       Play
                     </a>
-                    <p className="text-sm text-gray-400 w-1/2 self-start">
+                    <p className="self-start w-1/2 text-sm text-gray-400">
                       {movie.overview}
                     </p>
                   </section>
