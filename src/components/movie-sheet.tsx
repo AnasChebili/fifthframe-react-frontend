@@ -38,7 +38,7 @@ export const MovieSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent
         side={"right"}
-        className="text-white bg-black border-none max-sm:w-full"
+        className="text-white bg-black border-none max-md:w-full"
       >
         <ScrollArea className="h-svh">
           <section className="flex flex-col gap-10 p-10 ">
@@ -54,7 +54,7 @@ export const MovieSheet = ({
                 </SheetHeader>
                 <section className="flex flex-col w-full gap-8 ">
                   {video?.key ? (
-                    <div className="self-center">
+                    <div className="self-center w-full">
                       <MovieYoutube id={video?.key} />
                     </div>
                   ) : (
@@ -100,7 +100,7 @@ export const MovieSheet = ({
                       <Play className="w-4 h-4" />
                       Play
                     </a>
-                    <p className="self-start w-1/2 text-sm text-gray-400">
+                    <p className="self-start w-full text-sm text-gray-400 md:w-1/2">
                       {movie.overview}
                     </p>
                   </section>
