@@ -21,7 +21,7 @@ export const SearchContainer = () => {
   console.log(error);
 
   return (
-    <Card className="w-full h-full border-gray-500 bg-transparent text-white">
+    <Card className="w-full h-full text-white bg-transparent border-gray-500">
       <CardHeader>
         <CardTitle>Search</CardTitle>
         <CardDescription>You can search your favorite movies</CardDescription>
@@ -35,7 +35,7 @@ export const SearchContainer = () => {
         </CardContent>
         <CardFooter>
           <ScrollArea className="h-[400px] w-full">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-8">
               {moviePages?.map((moviePage) =>
                 moviePage.map(
                   (movie) =>
