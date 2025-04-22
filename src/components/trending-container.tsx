@@ -20,8 +20,8 @@ export const TrendingContainer = () => {
     }
   }, hasNextPage && !isFetchingNextPage);
   return (
-    <ScrollArea className=" border-none  ">
-      <section className="p-4 text-white flex flex-col gap-8 mb-1">
+    <ScrollArea className="border-none ">
+      <section className="flex flex-col gap-8 p-4 mb-1 text-white">
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl">Trending Movies</h1>
           <p className="text-sm text-gray-400">Find Trending Movies</p>
@@ -36,11 +36,12 @@ export const TrendingContainer = () => {
                       key={movie.id}
                       movie={movie}
                       configuration={configurationQuery.data}
+                      className="w-[200px] sm:w-[300px]"
                     />
                   )
               )
             )}
-          <div ref={loadMoreRef} className="flex justify-center items-center">
+          <div ref={loadMoreRef} className="flex items-center justify-center">
             {hasNextPage && !isFetchingNextPage && (
               <Spinner size={"large"} className="text-white" />
             )}

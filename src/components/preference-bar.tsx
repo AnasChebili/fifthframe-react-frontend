@@ -32,7 +32,7 @@ export const PreferenceBar = ({
   setQuery: Dispatch<SetStateAction<DiscoverQuery>>;
 }) => {
   return (
-    <section className="flex  gap-8 w-full">
+    <section className="flex flex-col w-full gap-8 sm:flex-row">
       <Input
         placeholder="Filter by: Keywords"
         className="border-gray-500"
@@ -73,10 +73,10 @@ export const PreferenceBar = ({
           }))
         }
       >
-        <SelectTrigger className="border-gray-500 text-gray-500 ">
+        <SelectTrigger className="text-gray-500 border-gray-500 ">
           <SelectValue placeholder="Sort By" />
         </SelectTrigger>
-        <SelectContent className="bg-black text-gray-500">
+        <SelectContent className="text-gray-500 bg-black">
           {sortOptions.map((option) => (
             <SelectItem key={option.key} value={option.key}>
               {option.value}

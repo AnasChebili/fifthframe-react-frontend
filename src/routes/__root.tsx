@@ -15,15 +15,17 @@ function RootComponent() {
   return (
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
-        <div className="absolute top-10 right-10 cursor-pointer">
-          <img
-            className="text-white w-[220px] h-[30px]  object-cover "
-            src={fifthframeLogo}
-            alt="none"
-          />
-        </div>
-        <div className="mt-16">
-          <Outlet />
+        <div className="relative">
+          <div className="absolute cursor-pointer -top-3 right-10">
+            <img
+              className="text-white w-[220px] h-[30px]  object-cover "
+              src={fifthframeLogo}
+              alt="none"
+            />
+          </div>
+          <div className="mt-16">
+            <Outlet />
+          </div>
         </div>
         <TanStackRouterDevtools />
         <ReactQueryDevtools />

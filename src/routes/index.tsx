@@ -15,14 +15,14 @@ function RouteComponent() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
   return (
-    <section className="p-5 flex flex-col gap-10">
+    <section className="flex flex-col gap-10 p-5">
       <MovieContext.Provider value={{ setOpen, setId }}>
         <TrendingContainer />
-        <div className="flex gap-5 h-[600px]">
+        <div className="flex gap-5 sm:h-[600px] flex-col sm:flex-row">
           <div className="basis-2/3">
             <SearchContainer />
           </div>
-          <div className="basis-1/3">
+          <div className="sm:basis-1/3 h-[600px] sm:h-auto">
             <PopularContainer />
           </div>
         </div>

@@ -6,12 +6,19 @@ export const MovieYoutube = ({ id }: { id: string }) => {
   };
 
   const opts: YouTubeProps["opts"] = {
-    height: "500",
-    width: "900",
+    width: "100%",
+    heigh: "auto",
     playerVars: {
       autoplayer: 1,
     },
   };
 
-  return <YouTube videoId={id} opts={opts} onReady={onPlayerReady} />;
+  return (
+    <YouTube
+      videoId={id}
+      opts={opts}
+      onReady={onPlayerReady}
+      ClassName="w-full"
+    />
+  );
 };
