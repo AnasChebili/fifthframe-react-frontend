@@ -12,11 +12,12 @@ export const Route = createFileRoute("/")({
 });
 
 function RouteComponent() {
-  const [open, setOpen] = useState(false);
+  const [openSheet, setOpenSheet] = useState(false);
+  const [openDialog, setOpenDialog] = useState(true);
   const [id, setId] = useState(0);
   return (
     <section className="flex flex-col gap-10 p-5">
-      <MovieContext.Provider value={{ setOpen, setId }}>
+      <MovieContext.Provider value={{ setOpen: setOpenSheet, setId }}>
         <TrendingContainer />
         <div className="flex gap-5 sm:h-[600px] flex-col sm:flex-row">
           <div className="basis-2/3">
@@ -29,7 +30,7 @@ function RouteComponent() {
         <BrowseContainer />
       </MovieContext.Provider>
 
-      <MovieSheet open={open} setOpen={setOpen} id={id} />
+      <MovieSheet open={openSheet} setOpen={setOpenSheet} id={id} />
     </section>
   );
 }
