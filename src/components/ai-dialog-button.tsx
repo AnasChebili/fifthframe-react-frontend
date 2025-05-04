@@ -1,44 +1,20 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Button } from "./ui/button";
 import { Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const AIDialogButton = ({
   setOpen,
 }: {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <Button
       onClick={() => setOpen((prev) => !prev)}
       variant="outline"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={cn(
-        "flex items-center gap-2 border border-indigo-500 w-fit relative",
-        "transition-all duration-300",
-        "bg-opacity-50 hover:bg-opacity-100",
-        "animate-float"
-      )}
+      className="relative flex items-center gap-2 text-indigo-500 transition-all duration-300 border border-indigo-500 opacity-50 w-fit hover:opacity-100 hover:text-indigo-500 animate-float"
     >
-      <Sparkles
-        className={cn(
-          "w-4 h-4 text-indigo-500",
-          "transition-opacity duration-300",
-          isHovered ? "opacity-100" : "opacity-70"
-        )}
-      />
-      <span
-        className={cn(
-          "text-indigo-500",
-          "transition-opacity duration-300",
-          isHovered ? "opacity-100" : "opacity-70"
-        )}
-      >
-        AI
-      </span>
+      <Sparkles className="w-4 h-4" />
+      <span>AI</span>
     </Button>
   );
 };
