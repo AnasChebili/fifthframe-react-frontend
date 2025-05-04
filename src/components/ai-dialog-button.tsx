@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Button } from "./ui/button";
 import { Sparkles } from "lucide-react";
 
-const AIDialogButton = ({
+export const AIDialogButton = ({
   setOpen,
 }: {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -18,5 +18,3 @@ const AIDialogButton = ({
     </Button>
   );
 };
-
-export default AIDialogButton;

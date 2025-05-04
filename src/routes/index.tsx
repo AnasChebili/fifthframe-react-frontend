@@ -1,4 +1,4 @@
-import AIDialogButton from "@/components/ai-dialog-button";
+import { AIDialogButton } from "@/components/ai-dialog-button";
 import { BrowseContainer } from "@/components/browse-container";
 import { MovieSheet } from "@/components/movie-sheet";
 import { PopularContainer } from "@/components/popular-container";
