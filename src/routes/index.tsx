@@ -1,3 +1,4 @@
+import { AIDialog } from "@/components/ai-dialog";
 import { AIDialogButton } from "@/components/ai-dialog-button";
 import { BrowseContainer } from "@/components/browse-container";
 import { MovieSheet } from "@/components/movie-sheet";
@@ -34,7 +35,7 @@ function RouteComponent() {
         </div>
         <BrowseContainer />
       </MovieContext.Provider>
-
+      <AIDialog open={openDialog} setOpen={setOpenDialog} />
       <MovieSheet open={openSheet} setOpen={setOpenSheet} id={id} />
     </section>
   );
