@@ -27,8 +27,9 @@ function RootComponent() {
             <Outlet />
           </div>
         </div>
+        {/* 
         <TanStackRouterDevtools />
-        <ReactQueryDevtools />
+        <ReactQueryDevtools /> */}
       </QueryClientProvider>
     </React.Fragment>
   );

@@ -49,10 +49,18 @@ module.exports = {
     				'3': 'hsl(var(--chart-3))',
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
-    			}
+    			},
+                animation: {
+                    float: 'float 3s ease-in-out infinite',
+                },
+                keyframes: {
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0px)' },
+                        '50%': { transform: 'translateY(-5px)' },
+                    },
+                },
     		}
     	}
     },
     plugins: [require("tailwindcss-animate")],
   }
-  

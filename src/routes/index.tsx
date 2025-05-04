@@ -1,3 +1,4 @@
+import AIDialogButton from "@/components/ai-dialog-button";
 import { BrowseContainer } from "@/components/browse-container";
 import { MovieSheet } from "@/components/movie-sheet";
 import { PopularContainer } from "@/components/popular-container";
@@ -17,6 +18,10 @@ function RouteComponent() {
   const [id, setId] = useState(0);
   return (
     <section className="flex flex-col gap-10 p-5">
+      <div className="fixed z-50 -translate-x-1/2 bottom-5 left-1/2">
+        <AIDialogButton setOpen={setOpenDialog} />
+      </div>
+
       <MovieContext.Provider value={{ setOpen: setOpenSheet, setId }}>
         <TrendingContainer />
         <div className="flex gap-5 sm:h-[600px] flex-col sm:flex-row">
