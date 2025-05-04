@@ -16,7 +16,7 @@ export const TrendingCard = ({
     | Zod.infer<typeof MoviesResultSchema>
     | Zod.infer<typeof SearchMoviesResultsSchema>;
   configuration: Zod.infer<typeof ConfigurationResponseSchema>;
-  className: string;
+  className?: string;
 }) => {
   const { setOpen, setId } = useContext(MovieContext)!;
   return (
