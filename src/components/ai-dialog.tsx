@@ -7,9 +7,11 @@ import { Sparkles, Bot } from "lucide-react";
 export const AIDialog = ({
   open,
   setOpen,
+  setOpenDrawer,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [query, setQuery] = useState("");
 
@@ -39,7 +41,12 @@ export const AIDialog = ({
             className="min-h-[100px]"
           />
 
-          <Button className="flex items-center justify-center w-full gap-2 bg-indigo-600 hover:bg-indigo-700">
+          <Button
+            onClick={() => {
+              setOpenDrawer(true);
+            }}
+            className="flex items-center justify-center w-full gap-2 bg-indigo-600 hover:bg-indigo-700"
+          >
             <Sparkles className="w-4 h-4" />
             Get AI Recommendations
           </Button>

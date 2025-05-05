@@ -3,6 +3,7 @@ import { AIDialogButton } from "@/components/ai-dialog-button";
 import { BrowseContainer } from "@/components/browse-container";
 import { MovieSheet } from "@/components/movie-sheet";
 import { PopularContainer } from "@/components/popular-container";
+import { RecommendationsDrawer } from "@/components/recommendations-drawer";
 import { SearchContainer } from "@/components/search-container";
 import { TrendingContainer } from "@/components/trending-container";
 import { MovieContext } from "@/context/movie-context";
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/")({
 function RouteComponent() {
   const [openSheet, setOpenSheet] = useState(false);
   const [openDialog, setOpenDialog] = useState(true);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const [id, setId] = useState(0);
   return (
     <section className="flex flex-col gap-10 p-5">
@@ -34,8 +36,14 @@ function RouteComponent() {
           </div>
         </div>
         <BrowseContainer />
+        <RecommendationsDrawer open={openDrawer} setOpen={setOpenDrawer} />
       </MovieContext.Provider>
-      <AIDialog open={openDialog} setOpen={setOpenDialog} />
+      <AIDialog
+        open={openDialog}
+        setOpen={setOpenDialog}
+        setOpenDrawer={setOpenDrawer}
+      />
+
       <MovieSheet open={openSheet} setOpen={setOpenSheet} id={id} />
     </section>
   );
