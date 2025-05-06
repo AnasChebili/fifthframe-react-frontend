@@ -41,7 +41,7 @@ export const MovieSheet = ({
         className="text-white bg-black border-none max-md:w-full"
       >
         <ScrollArea className="h-svh">
-          <section className="flex flex-col gap-10 p-10 ">
+          <section className="flex flex-col gap-10 pb-10 ">
             {movie ? (
               <>
                 <SheetHeader>
@@ -100,7 +100,7 @@ export const MovieSheet = ({
                       <Play className="w-4 h-4" />
                       Play
                     </a>
-                    <p className="self-start w-full text-sm text-gray-400 md:w-1/2">
+                    <p className="self-start w-full text-sm text-gray-400 lg:w-1/2">
                       {movie.overview}
                     </p>
                   </section>
