@@ -14,7 +14,7 @@ export const RecommendationsDrawer = ({
   const { data: moviesPages, error } = useGetTrendingMovies();
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerContent className=" dark">
+      <DrawerContent className=" min-h-[50%] dark">
         {!error && moviesPages ? (
           <section className="p-4">
             <h1 className="mb-5 text-2xl text-white">
