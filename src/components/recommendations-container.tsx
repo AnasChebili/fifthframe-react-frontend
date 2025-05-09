@@ -64,7 +64,7 @@ const RecommendationsCard = ({
   const { setOpen, setId } = useContext(MovieContext)!;
   return (
     <div
-      className="flex items-center justify-center overflow-hidden rounded-md cursor-pointer w-[200px] sm:w-[300px]"
+      className="flex items-center justify-center overflow-hidden rounded-md cursor-pointer w-[200px]"
       onClick={() => {
         setOpen(true);
         setId(movie.id);
