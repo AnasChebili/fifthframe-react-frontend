@@ -20,12 +20,12 @@ export const TrendingContainer = () => {
     }
   }, hasNextPage && !isFetchingNextPage);
   return (
-    <ScrollArea className="border-none ">
-      <section className="flex flex-col gap-8 p-4 mb-1 text-white">
-        <header className="flex flex-col gap-2">
-          <h1 className="text-2xl">Trending Movies</h1>
-          <p className="text-sm text-gray-400">Find Trending Movies</p>
-        </header>
+    <section className="flex flex-col gap-8 text-white">
+      <header className="flex flex-col gap-2">
+        <h1 className="text-2xl">Trending Movies</h1>
+        <p className="text-sm text-gray-400">Find Trending Movies</p>
+      </header>
+      <ScrollArea className="p-4 mb-1 border-none">
         <div className="flex gap-4 ">
           {!error &&
             moviesPages?.map((page) =>
@@ -47,8 +47,8 @@ export const TrendingContainer = () => {
             )}
           </div>
         </div>
-      </section>
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+    </section>
   );
 };

@@ -23,7 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+.env
+
 # amplify
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+
