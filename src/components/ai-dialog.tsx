@@ -13,7 +13,7 @@ export const AIDialog = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   setOpenDrawer: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [query, setQuery] = useState("");
+  const [message, setMessage] = useState("");
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -35,8 +35,8 @@ export const AIDialog = ({
           </div>
 
           <Textarea
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="e.g., I want a heartwarming comedy with strong female characters"
             className="min-h-[100px]"
           />
