@@ -39,7 +39,11 @@ function RouteComponent() {
           </div>
         </div>
         <BrowseContainer />
-        <RecommendationsDrawer open={openDrawer} setOpen={setOpenDrawer} />
+        <RecommendationsDrawer
+          open={openDrawer}
+          message={message}
+          setOpen={setOpenDrawer}
+        />
       </MovieContext.Provider>
       <AIDialog
         open={openDialog}

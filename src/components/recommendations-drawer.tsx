@@ -8,9 +8,11 @@ import { AlertCircle } from "lucide-react";
 export const RecommendationsDrawer = ({
   open,
   setOpen,
+  message,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  message: string | undefined;
 }) => {
   const { data: moviesPages, error } = useGetTrendingMovies();
   return (
