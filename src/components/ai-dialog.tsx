@@ -1,8 +1,9 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useContext } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { Sparkles, Bot } from "lucide-react";
+import { MovieContext } from "@/context/movie-context";
 
 export const AIDialog = ({
   open,
@@ -13,7 +14,8 @@ export const AIDialog = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   setOpenDrawer: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [message, setMessage] = useState("");
+  const [query, setQuery] = useState("");
+  const { setMessage } = useContext(MovieContext)!;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -35,8 +37,8 @@ export const AIDialog = ({
           </div>
 
           <Textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="e.g., I want a heartwarming comedy with strong female characters"
             className="min-h-[100px]"
           />
@@ -44,6 +46,7 @@ export const AIDialog = ({
           <Button
             onClick={() => {
               setOpenDrawer(true);
+              setMessage(query);
             }}
             className="flex items-center justify-center w-full gap-2 bg-indigo-600 hover:bg-indigo-700"
           >
