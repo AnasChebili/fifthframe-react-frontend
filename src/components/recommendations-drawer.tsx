@@ -4,6 +4,7 @@ import { Thinking } from "./thinking";
 import { RecommendationsContainer } from "./recommendations-container";
 import { useGetTrendingMovies } from "@/hooks/use-movie";
 import { AlertCircle } from "lucide-react";
+import { useGetAssistantResponse } from "@/hooks/use-assistant";
 
 export const RecommendationsDrawer = ({
   open,
@@ -14,6 +15,7 @@ export const RecommendationsDrawer = ({
   setOpen: Dispatch<SetStateAction<boolean>>;
   message: string | undefined;
 }) => {
+  const { data: query } = useGetAssistantResponse({ message });
   const { data: moviesPages, error } = useGetTrendingMovies();
   return (
     <Drawer open={open} onOpenChange={setOpen}>
