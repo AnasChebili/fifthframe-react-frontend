@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Drawer, DrawerContent } from "./ui/drawer";
 import { Thinking } from "./thinking";
 import { RecommendationsContainer } from "./recommendations-container";
-import { useGetTrendingMovies } from "@/hooks/use-movie";
+import { useGetMoviesByDiscover } from "@/hooks/use-movie";
 import { AlertCircle } from "lucide-react";
 import { useGetAssistantResponse } from "@/hooks/use-assistant";
 
@@ -16,7 +16,7 @@ export const RecommendationsDrawer = ({
   message: string | undefined;
 }) => {
   const { data: query } = useGetAssistantResponse({ message });
-  const { data: moviesPages, error } = useGetTrendingMovies();
+  const { data: moviesPages, error } = useGetMoviesByDiscover({ query });
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerContent className=" min-h-[50%] dark">
