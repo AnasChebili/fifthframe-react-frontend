@@ -44,12 +44,12 @@ function RouteComponent() {
           message={message}
           setOpen={setOpenDrawer}
         />
+        <AIDialog
+          open={openDialog}
+          setOpen={setOpenDialog}
+          setOpenDrawer={setOpenDrawer}
+        />
       </MovieContext.Provider>
-      <AIDialog
-        open={openDialog}
-        setOpen={setOpenDialog}
-        setOpenDrawer={setOpenDrawer}
-      />
 
       <MovieSheet open={openSheet} setOpen={setOpenSheet} id={id} />
     </section>
